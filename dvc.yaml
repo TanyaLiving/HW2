@@ -1,0 +1,19 @@
+stages:
+  pipeline:
+    cmd: python3 src/Regression_script.py 
+    deps:
+    - data
+    - src
+    params:
+      - n_neighbors
+      - random_state
+      - n_splits
+      - test_size
+    outs:
+     - model_name.pickle
+    metrics:
+    - metrics.json:
+        cache: false
+    plots:
+    - conf_matr.png:
+        cache: false

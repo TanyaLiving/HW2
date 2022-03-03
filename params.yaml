@@ -1,0 +1,5 @@
+# params:
+n_neighbors: 100
+random_state: 45
+n_splits: 8
+test_size: 0.1

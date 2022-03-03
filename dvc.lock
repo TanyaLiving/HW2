@@ -1,0 +1,29 @@
+schema: '2.0'
+stages:
+  pipeline:
+    cmd: python3 src/Regression_script.py
+    deps:
+    - path: data
+      md5: 059a3b1ac7e4140fe7e912479b35f96d.dir
+      size: 306546
+      nfiles: 1
+    - path: src
+      md5: 3055a4e18a5af9760fc1b9c69c0e5138.dir
+      size: 7780
+      nfiles: 2
+    params:
+      params.yaml:
+        n_neighbors: 100
+        n_splits: 8
+        random_state: 45
+        test_size: 0.1
+    outs:
+    - path: conf_matr.png
+      md5: 64e851336b05ff4e25cc45722c48bdfc
+      size: 53994
+    - path: metrics.json
+      md5: 101163a0eb0e9e1f246177da4db347b9
+      size: 30
+    - path: model_name.pickle
+      md5: 5e77e95e114bb4662438131793c2b0cb
+      size: 1815
