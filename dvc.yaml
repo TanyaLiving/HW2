@@ -15,5 +15,5 @@ stages:
     - metrics.json:
         cache: false
     plots:
-    - conf_matr.png:
+    - plots_file.json:
         cache: false

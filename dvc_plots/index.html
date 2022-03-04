@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>DVC Plot</title>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    
+</head>
+<body>
+    
+        <div
+            id="plot_conf_matr_png"
+            style="border:1px solid black;text-align:center;
+            white-space: nowrap;overflow-y:hidden;">
+            
+        </div>
+
+    <div id = "plot_plots_file_json">
+        <script type = "text/javascript">
+            var spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+        "values": [
+    {
+        "features": 5.658945426532556,
+        "rev": "workspace",
+        "step": 0,
+        "x": "FTI_measured"
+    },
+    {
+        "features": 2.868408911059049,
+        "rev": "workspace",
+        "step": 1,
+        "x": "T4U_measured"
+    },
+    {
+        "features": 1.9947465125764672,
+        "rev": "workspace",
+        "step": 2,
+        "x": "referral_source"
+    },
+    {
+        "features": 1.931556837355948,
+        "rev": "workspace",
+        "step": 3,
+        "x": "FTI"
+    },
+    {
+        "features": 1.5279744376354443,
+        "rev": "workspace",
+        "step": 4,
+        "x": "psych"
+    },
+    {
+        "features": 1.3330346523731202,
+        "rev": "workspace",
+        "step": 5,
+        "x": "hypopituitary"
+    },
+    {
+        "features": 0.8830337409383318,
+        "rev": "workspace",
+        "step": 6,
+        "x": "on_antithyroid_medication"
+    },
+    {
+        "features": 0.8471246181015085,
+        "rev": "workspace",
+        "step": 7,
+        "x": "on_thyroxine"
+    },
+    {
+        "features": 0.502639943410488,
+        "rev": "workspace",
+        "step": 8,
+        "x": "query_hypothyroid"
+    },
+    {
+        "features": 0.4507432378808208,
+        "rev": "workspace",
+        "step": 9,
+        "x": "TT4_measured"
+    },
+    {
+        "features": 0.4418011642335336,
+        "rev": "workspace",
+        "step": 10,
+        "x": "TSH"
+    },
+    {
+        "features": 0.4287700421210576,
+        "rev": "workspace",
+        "step": 11,
+        "x": "sex"
+    },
+    {
+        "features": 0.3638603551262727,
+        "rev": "workspace",
+        "step": 12,
+        "x": "lithium"
+    },
+    {
+        "features": 0.31635614832292913,
+        "rev": "workspace",
+        "step": 13,
+        "x": "pregnant"
+    },
+    {
+        "features": 0.26483677457496946,
+        "rev": "workspace",
+        "step": 14,
+        "x": "TSH_measured"
+    },
+    {
+        "features": 0.20670893543355984,
+        "rev": "workspace",
+        "step": 15,
+        "x": "query_on_thyroxine"
+    },
+    {
+        "features": 0.20180602028164069,
+        "rev": "workspace",
+        "step": 16,
+        "x": "query_hyperthyroid"
+    },
+    {
+        "features": 0.13999703652986648,
+        "rev": "workspace",
+        "step": 17,
+        "x": "I131_treatment"
+    },
+    {
+        "features": 0.13486403480641485,
+        "rev": "workspace",
+        "step": 18,
+        "x": "T4U"
+    },
+    {
+        "features": 0.10760006021335222,
+        "rev": "workspace",
+        "step": 19,
+        "x": "T3"
+    },
+    {
+        "features": 0.09141796607498068,
+        "rev": "workspace",
+        "step": 20,
+        "x": "thyroid_surgery"
+    },
+    {
+        "features": 0.0673057731719838,
+        "rev": "workspace",
+        "step": 21,
+        "x": "goitre"
+    },
+    {
+        "features": 0.040731731603230514,
+        "rev": "workspace",
+        "step": 22,
+        "x": "TT4"
+    },
+    {
+        "features": 0.03923021462333322,
+        "rev": "workspace",
+        "step": 23,
+        "x": "tumor"
+    },
+    {
+        "features": 0.02396191971392609,
+        "rev": "workspace",
+        "step": 24,
+        "x": "sick"
+    },
+    {
+        "features": 0.023176067809327256,
+        "rev": "workspace",
+        "step": 25,
+        "x": "age"
+    },
+    {
+        "features": 0.0024165938159587392,
+        "rev": "workspace",
+        "step": 26,
+        "x": "T3_measured"
+    }
+]
+    },
+    "title": "",
+    "width": 300,
+    "height": 300,
+    "layer": [
+        {
+            "encoding": {
+                "x": {
+                    "field": "step",
+                    "type": "quantitative",
+                    "title": "step"
+                },
+                "y": {
+                    "field": "x",
+                    "type": "quantitative",
+                    "title": "x",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "color": {
+                    "field": "rev",
+                    "type": "nominal"
+                }
+            },
+            "layer": [
+                {
+                    "mark": "line"
+                },
+                {
+                    "selection": {
+                        "label": {
+                            "type": "single",
+                            "nearest": true,
+                            "on": "mouseover",
+                            "encodings": [
+                                "x"
+                            ],
+                            "empty": "none",
+                            "clear": "mouseout"
+                        }
+                    },
+                    "mark": "point",
+                    "encoding": {
+                        "opacity": {
+                            "condition": {
+                                "selection": "label",
+                                "value": 1
+                            },
+                            "value": 0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "transform": [
+                {
+                    "filter": {
+                        "selection": "label"
+                    }
+                }
+            ],
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rule",
+                        "color": "gray"
+                    },
+                    "encoding": {
+                        "x": {
+                            "field": "step",
+                            "type": "quantitative"
+                        }
+                    }
+                },
+                {
+                    "encoding": {
+                        "text": {
+                            "type": "quantitative",
+                            "field": "x"
+                        },
+                        "x": {
+                            "field": "step",
+                            "type": "quantitative"
+                        },
+                        "y": {
+                            "field": "x",
+                            "type": "quantitative"
+                        }
+                    },
+                    "layer": [
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "left",
+                                "dx": 5,
+                                "dy": -5
+                            },
+                            "encoding": {
+                                "color": {
+                                    "type": "nominal",
+                                    "field": "rev"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+;
+            vegaEmbed('#plot_plots_file_json', spec);
+        </script>
+    </div>
+    
+</body>
+</html>

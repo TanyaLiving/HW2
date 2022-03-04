@@ -8,22 +8,22 @@ stages:
       size: 306546
       nfiles: 1
     - path: src
-      md5: 3055a4e18a5af9760fc1b9c69c0e5138.dir
-      size: 7780
+      md5: e58b97f88491b4b0ec5c5ba658ec5ee0.dir
+      size: 8904
       nfiles: 2
     params:
       params.yaml:
         n_neighbors: 100
-        n_splits: 8
-        random_state: 45
+        n_splits: 5
+        random_state: 4
         test_size: 0.1
     outs:
-    - path: conf_matr.png
-      md5: 64e851336b05ff4e25cc45722c48bdfc
-      size: 53994
     - path: metrics.json
-      md5: 101163a0eb0e9e1f246177da4db347b9
-      size: 30
+      md5: 42eda49c7162a18d7425d1e8323d8601
+      size: 29
     - path: model_name.pickle
-      md5: 5e77e95e114bb4662438131793c2b0cb
+      md5: 863ec5066ab0a976e349e8493b5bd4b4
       size: 1815
+    - path: plots_file.json
+      md5: da82aab180cf1bd6ec70a4d263f177d6
+      size: 1445

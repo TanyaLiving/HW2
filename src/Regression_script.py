@@ -100,7 +100,9 @@ def confus_matr(true_y_value, predicted_y_value):
   plt.xlabel('Predicted label');
   plt.ylabel('True label');
 
-  plt.savefig('conf_matr.png')
+
+
+  # plt.savefig('conf_matr.png')
 
 
 # %%
@@ -110,11 +112,11 @@ def model_result(model, X_tran, y_train, X_test, y_test):
 
   conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred), index=class_names, columns=class_names)
   conf_matrix['Total'] = conf_matrix.negative + conf_matrix.comp_hypoth + conf_matrix['prim/sec hypothyroid']
-  print('Confusion matrix:', '\n', conf_matrix, '\n')
+  # print('Confusion matrix:', '\n', conf_matrix, '\n')
 
   confus_matr(y_test, y_pred)
 
-  print('Classification_report:', '\n', classification_report(y_test, y_pred, target_names=class_names))
+  # print('Classification_report:', '\n', classification_report(y_test, y_pred, target_names=class_names))
 
   pickle.dump(model, open('model_name.pickle', 'wb'))
 
@@ -136,16 +138,6 @@ def CV(model, X, y, cv):
 
     with open('metrics.json', 'w') as outfile:
         json.dump({'report': CV_score}, outfile)
-# %%
-def model_result_2(y_test, y_pred):
-
-  conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred), index=class_names, columns=class_names)
-  conf_matrix['Total'] = conf_matrix.negative + conf_matrix.comp_hypoth + conf_matrix['prim/sec hypothyroid']
-  print('Confusion matrix:', '\n', conf_matrix, '\n')
-
-  confus_matr(y_test, y_pred)
-
-  print('Classification_report:', '\n', classification_report(y_test, y_pred, target_names=class_names))
 
 
 
@@ -247,3 +239,49 @@ model_result(LogisticRegression(penalty='none', random_state=random_state),
 # %%
 cv = StratifiedShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
 CV(LogisticRegression(penalty='none'), train_X_transform, train_y_transform, cv )
+
+# Plot Feature importance
+best_model = LogisticRegression(penalty='none', random_state=random_state).fit(train_X_transform, train_y_transform)
+importance = pd.DataFrame(best_model.coef_,
+                   columns=train_X_transform.columns
+                   )
+
+importance_T = importance.T
+importance_T['feature'] = importance_T.index
+importance_T.rename(columns={0: "compensated_hypothyroid", 1: "negative", 2: 'prim/sec_hypothyroid', 3: 'secondary_hypothyroid'}, inplace=True)
+
+for i in importance_T.columns[:-1]:
+  plt.figure(figsize=(25,15))
+
+  x1=abs(importance_T[i]).sort_values(ascending=False)
+  print(x1)
+  y1=abs(importance_T[i]).sort_values(ascending=False).index
+  print(y1)
+
+  fi = sns.barplot(y = y1,x = x1)
+  fi.set_title(f'Feature importance for class {i}',
+                                                                             fontdict={'fontsize':21}, 
+                                                                             pad=12, 
+                                                                             fontweight='bold'
+                                                                             )
+  fi.set_ylabel('features',
+              fontsize = 20,
+              )
+  fi.set_xlabel(i,
+              fontsize = 20,
+              )
+  fi.tick_params(axis="both", labelsize=20)
+
+
+  # save plot
+
+  with open('plots_file.json', 'w') as p:
+    plot_dict = {
+      'plot': [{
+              'features': name,
+              'x': val
+            } for name, val in zip(x1, y1)]
+            }
+    json.dump(plot_dict, p)
+
+# %%
