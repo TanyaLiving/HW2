@@ -1,19 +1,39 @@
 stages:
-  pipeline:
-    cmd: python3 src/Regression_script.py 
+  preparation:
+    cmd: python3 src/Preparation.py 
     deps:
-    - data
-    - src
+    - data/dataset_57_hypothyroid.csv
+    - src/Preparation.py
     params:
       - n_neighbors
       - random_state
       - n_splits
       - test_size
     outs:
-     - model_name.pickle
+      - data/train_X_transform.csv
+      - data/train_y_transform.csv
+      - data/test_X_transform.csv
+      - data/test_y_transform.csv
+  evaluate:
+    cmd: python3 src/train_model.py 
+    deps:
+      - data/train_X_transform.csv
+      - data/train_y_transform.csv
+      - data/test_X_transform.csv
+      - data/test_y_transform.csv
+      - src/train_model.py
+    outs:
+     - best_model.pickle
     metrics:
     - metrics.json:
         cache: false
+  feature_importance:
+    cmd: python3 src/feature_importance.py 
+    deps:
+      - best_model.pickle
+      - src/feature_importance.py
+    outs:
+     - FI_plot.png
     plots:
     - plots_file.json:
         cache: false
