@@ -3,3 +3,4 @@ sklearn-pandas
 seaborn
 imbalanced-learn
 black
+pylint
