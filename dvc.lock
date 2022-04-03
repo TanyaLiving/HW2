@@ -34,8 +34,8 @@ stages:
       md5: 86a5c085a183d30d7b147af706b7f39c
       size: 306546
     - path: src/Preparation.py
-      md5: 67e85fc140a44116d4d5626df2c7ba86
-      size: 3318
+      md5: 78ebf2abc0b64f9b93fb87772feee4d7
+      size: 3304
     params:
       params.yaml:
         n_neighbors: 10
@@ -114,8 +114,8 @@ stages:
       md5: 6e68614401eb2b3c5d7e05c74004e9f4
       size: 21514
     - path: src/train_model.py
-      md5: cd70ae3004253877b35eb0aa3badbeaf
-      size: 2793
+      md5: c9c9d7d663358d9d7a21cbd2826f78ec
+      size: 2693
     outs:
     - path: best_model.pickle
       md5: df67ef10fbdf88e21dd753a1cfa0a8c8
@@ -130,8 +130,8 @@ stages:
       md5: df67ef10fbdf88e21dd753a1cfa0a8c8
       size: 364823
     - path: src/feature_importance.py
-      md5: 470000ff17b339b84a4e3eb0b7cb9265
-      size: 1754
+      md5: 7aaee7e8c415136768703472ef5d5264
+      size: 1510
     outs:
     - path: FI_plot.png
       md5: e4778bb36af00df9bebbebe9a4769298

@@ -4,3 +4,4 @@ seaborn
 imbalanced-learn
 black
 pylint
+category_encoders

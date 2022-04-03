@@ -20,9 +20,9 @@ for i in importance_T.columns[:-1]:
   plt.figure(figsize=(25,15))
 
   x1=abs(importance_T[i]).sort_values(ascending=False)
-  print(x1)
+  #print(x1)
   y1=abs(importance_T[i]).sort_values(ascending=False).index
-  print(y1)
+  #print(y1)
 
   fi = sns.barplot(y = y1,x = x1)
   fi.set_title(f'Feature importance for class {i}',
