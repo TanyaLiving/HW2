@@ -53,7 +53,9 @@ class_names  = ['comp_hypoth', 'negative', 'prim/sec hypothyroid']
 train_X_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/train_X_transform.csv', sep=';')
 train_y_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/train_y_transform.csv', sep=';')
 test_X_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/test_X_transform.csv', sep=';')
-test_y_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/test_y_transform.csv', sep=';')
+test_y_transform = pd.read_csv(
+  '/home/tanya/Education/HW2_dvc_cicd/data/test_y_transform.csv', sep=';',
+  )
 
 cv = StratifiedShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
 
