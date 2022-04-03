@@ -13,7 +13,7 @@ jobs:
           # git fetch --prune
           # dvc metrics diff --show-md master > report.md
 
-          unit_tests.py
+          python unit_tests.py
           
           pylint --fail-under=0.9 train_model.py
         
