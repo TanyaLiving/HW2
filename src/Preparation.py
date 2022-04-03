@@ -25,7 +25,7 @@ def df_X_y(X, y):
     return transform
 
 
-with open("/home/tanya/Education/HW2_dvc_cicd/params.yaml", "r") as fd:
+with open("../params.yaml", "r") as fd:
     params = yaml.safe_load(fd)
 
 n_neighbors = params["n_neighbors"]
@@ -37,7 +37,7 @@ test_size = params["test_size"]
 # Read and clean data
 
 thyroid_disease = pd.read_csv(
-    "/home/tanya/Education/HW2_dvc_cicd/data/dataset_57_hypothyroid.csv", na_values="?"
+    "../data/dataset_57_hypothyroid.csv", na_values="?"
 )
 thyroid_disease = thyroid_disease.drop(thyroid_disease[["TBG"]], axis=1)
 thyroid_disease.drop("TBG_measured", axis=1, inplace=True)
@@ -108,14 +108,14 @@ test_y_transform = pd.DataFrame(le, columns=["Class"])
 test_X_transform = pd.DataFrame(mapper.transform(test_X), columns=test_X.columns)
 
 train_X_transform.to_csv(
-    "/home/tanya/Education/HW2_dvc_cicd/data/train_X_transform.csv", sep=";"
+    "../data/train_X_transform.csv", sep=";"
 )
 train_y_transform.to_csv(
-    "/home/tanya/Education/HW2_dvc_cicd/data/train_y_transform.csv", sep=";"
+    "../data/train_y_transform.csv", sep=";"
 )
 test_X_transform.to_csv(
-    "/home/tanya/Education/HW2_dvc_cicd/data/test_X_transform.csv", sep=";"
+    "../data/test_X_transform.csv", sep=";"
 )
 test_y_transform.to_csv(
-    "/home/tanya/Education/HW2_dvc_cicd/data/test_y_transform.csv", sep=";"
+    "../data/test_y_transform.csv", sep=";"
 )
