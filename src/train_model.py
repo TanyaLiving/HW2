@@ -12,63 +12,87 @@ from sklearn.metrics import (
 from sklearn.model_selection import GridSearchCV, StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
 
-warnings.filterwarnings('ignore')
+warnings.filterwarnings("ignore")
 
 
 # # Functions
 
+
 def model_result(model, X_tran, y_train, X_test, y_test):
-  mod = model.fit(X_tran, y_train)
-  y_pred = mod.predict(X_test)
+    mod = model.fit(X_tran, y_train)
+    y_pred = mod.predict(X_test)
 
-  conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred), index=class_names, columns=class_names)
-  conf_matrix['Total'] = conf_matrix.negative + conf_matrix.comp_hypoth + conf_matrix['prim/sec hypothyroid']
+    conf_matrix = pd.DataFrame(
+        confusion_matrix(y_test, y_pred), index=class_names, columns=class_names
+    )
+    conf_matrix["Total"] = (
+        conf_matrix.negative
+        + conf_matrix.comp_hypoth
+        + conf_matrix["prim/sec hypothyroid"]
+    )
 
-  pickle.dump(model, open('model_name.pickle', 'wb'))
+    pickle.dump(model, open("model_name.pickle", "wb"))
+
 
 def model_result_2(y_test, y_pred):
 
-  conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred), index=class_names, columns=class_names)
-  conf_matrix['Total'] = conf_matrix.negative + conf_matrix.comp_hypoth + conf_matrix['prim/sec hypothyroid']
+    conf_matrix = pd.DataFrame(
+        confusion_matrix(y_test, y_pred), index=class_names, columns=class_names
+    )
+    conf_matrix["Total"] = (
+        conf_matrix.negative
+        + conf_matrix.comp_hypoth
+        + conf_matrix["prim/sec hypothyroid"]
+    )
 
-  with open('metrics.json', 'w') as outfile:
-    json.dump({'report': recall_score(y_test, y_pred, average='macro')}, outfile)
-  return recall_score(y_test, y_pred, average='macro')
+    with open("metrics.json", "w") as outfile:
+        json.dump({"report": recall_score(y_test, y_pred, average="macro")}, outfile)
+    return recall_score(y_test, y_pred, average="macro")
 
 
-# Params 
+# Params
 import yaml
 
-with open("/home/tanya/Education/HW2_dvc_cicd/params.yaml", 'r') as fd:
+with open("/home/tanya/Education/HW2_dvc_cicd/params.yaml", "r") as fd:
     params = yaml.safe_load(fd)
 
-random_state = params['random_state']
-n_splits = params['n_splits']
-test_size = params['test_size']
+random_state = params["random_state"]
+n_splits = params["n_splits"]
+test_size = params["test_size"]
 
 
+class_names = ["comp_hypoth", "negative", "prim/sec hypothyroid"]
 
-class_names  = ['comp_hypoth', 'negative', 'prim/sec hypothyroid']
-
-train_X_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/train_X_transform.csv', sep=';')
-train_y_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/train_y_transform.csv', sep=';')
-test_X_transform = pd.read_csv('/home/tanya/Education/HW2_dvc_cicd/data/test_X_transform.csv', sep=';')
+train_X_transform = pd.read_csv(
+    "/home/tanya/Education/HW2_dvc_cicd/data/train_X_transform.csv", sep=";"
+)
+train_y_transform = pd.read_csv(
+    "/home/tanya/Education/HW2_dvc_cicd/data/train_y_transform.csv", sep=";"
+)
+test_X_transform = pd.read_csv(
+    "/home/tanya/Education/HW2_dvc_cicd/data/test_X_transform.csv", sep=";"
+)
 test_y_transform = pd.read_csv(
-  '/home/tanya/Education/HW2_dvc_cicd/data/test_y_transform.csv', sep=';',
-  )
+    "/home/tanya/Education/HW2_dvc_cicd/data/test_y_transform.csv",
+    sep=";",
+)
 
-cv = StratifiedShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
+cv = StratifiedShuffleSplit(
+    n_splits=n_splits, test_size=test_size, random_state=random_state
+)
 
-log_reg_cv=LogisticRegressionCV(penalty = 'elasticnet',
-                                          scoring = 'recall_macro',
-                                          cv = cv,
-                                         solver = 'saga',
-                                          l1_ratios = np.linspace(0, 1, 10),
-                                          random_state = random_state)
+log_reg_cv = LogisticRegressionCV(
+    penalty="elasticnet",
+    scoring="recall_macro",
+    cv=cv,
+    solver="saga",
+    l1_ratios=np.linspace(0, 1, 10),
+    random_state=random_state,
+)
 
 best_model = log_reg_cv.fit(train_X_transform, train_y_transform.Class)
 
-with open ('/home/tanya/Education/HW2_dvc_cicd/best_model.pickle', 'wb') as f:
+with open("/home/tanya/Education/HW2_dvc_cicd/best_model.pickle", "wb") as f:
     pickle.dump(best_model, f)
 
 model_result_2(test_y_transform.Class, best_model.predict(test_X_transform))
