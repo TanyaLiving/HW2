@@ -6,14 +6,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: psf/black@stable
-      - run: |
+
+      - name: install requirements
+        run: |
           pip install -r requirements.txt
+
+      - name: dvc repro
+        run: |
           dvc repro
           
-          # git fetch --prune
-          # dvc metrics diff --show-md master > report.md
-
+      - name: metrics diff
+        run: |
+          git fetch --prune
+          dvc metrics diff --show-md master > report.md
+      - name: unit tests
+        run: |
           python unit_tests.py
-          
-          pylint --fail-under=0.9 train_model.py
+      - name: metrics treshold   
+        run: |
+          pylint --fail-under=0.9 python train_model.py
         
