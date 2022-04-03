@@ -63,15 +63,9 @@ test_size = params["test_size"]
 
 class_names = ["comp_hypoth", "negative", "prim/sec hypothyroid"]
 
-train_X_transform = pd.read_csv(
-    "../data/train_X_transform.csv", sep=";"
-)
-train_y_transform = pd.read_csv(
-    "../data/train_y_transform.csv", sep=";"
-)
-test_X_transform = pd.read_csv(
-    "../data/test_X_transform.csv", sep=";"
-)
+train_X_transform = pd.read_csv("../data/train_X_transform.csv", sep=";")
+train_y_transform = pd.read_csv("../data/train_y_transform.csv", sep=";")
+test_X_transform = pd.read_csv("../data/test_X_transform.csv", sep=";")
 test_y_transform = pd.read_csv(
     "../data/test_y_transform.csv",
     sep=";",

@@ -36,9 +36,7 @@ test_size = params["test_size"]
 
 # Read and clean data
 
-thyroid_disease = pd.read_csv(
-    "../data/dataset_57_hypothyroid.csv", na_values="?"
-)
+thyroid_disease = pd.read_csv("../data/dataset_57_hypothyroid.csv", na_values="?")
 thyroid_disease = thyroid_disease.drop(thyroid_disease[["TBG"]], axis=1)
 thyroid_disease.drop("TBG_measured", axis=1, inplace=True)
 thyroid_disease.drop(
@@ -107,15 +105,7 @@ test_y_transform = pd.DataFrame(le, columns=["Class"])
 
 test_X_transform = pd.DataFrame(mapper.transform(test_X), columns=test_X.columns)
 
-train_X_transform.to_csv(
-    "../data/train_X_transform.csv", sep=";"
-)
-train_y_transform.to_csv(
-    "../data/train_y_transform.csv", sep=";"
-)
-test_X_transform.to_csv(
-    "../data/test_X_transform.csv", sep=";"
-)
-test_y_transform.to_csv(
-    "../data/test_y_transform.csv", sep=";"
-)
+train_X_transform.to_csv("../data/train_X_transform.csv", sep=";")
+train_y_transform.to_csv("../data/train_y_transform.csv", sep=";")
+test_X_transform.to_csv("../data/test_X_transform.csv", sep=";")
+test_y_transform.to_csv("../data/test_y_transform.csv", sep=";")
