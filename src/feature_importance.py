@@ -4,9 +4,9 @@ import json
 import pandas as pd
 import pickle
 
-file = open("../best_model.pickle", "rb")
+file = open("./best_model.pickle", "rb")
 best_model = pickle.load(file)
-train_X_transform = pd.read_csv("../data/train_X_transform.csv", sep=";")
+train_X_transform = pd.read_csv("./data/train_X_transform.csv", sep=";")
 
 importance = pd.DataFrame(best_model.coef_, columns=train_X_transform.columns)
 

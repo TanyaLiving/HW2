@@ -53,7 +53,7 @@ def model_result_2(y_test, y_pred):
 # Params
 import yaml
 
-with open("../params.yaml", "r") as fd:
+with open("./params.yaml", "r") as fd:
     params = yaml.safe_load(fd)
 
 random_state = params["random_state"]
@@ -63,11 +63,11 @@ test_size = params["test_size"]
 
 class_names = ["comp_hypoth", "negative", "prim/sec hypothyroid"]
 
-train_X_transform = pd.read_csv("../data/train_X_transform.csv", sep=";")
-train_y_transform = pd.read_csv("../data/train_y_transform.csv", sep=";")
-test_X_transform = pd.read_csv("../data/test_X_transform.csv", sep=";")
+train_X_transform = pd.read_csv("./data/train_X_transform.csv", sep=";")
+train_y_transform = pd.read_csv("./data/train_y_transform.csv", sep=";")
+test_X_transform = pd.read_csv("./data/test_X_transform.csv", sep=";")
 test_y_transform = pd.read_csv(
-    "../data/test_y_transform.csv",
+    "./data/test_y_transform.csv",
     sep=";",
 )
 
@@ -86,7 +86,7 @@ log_reg_cv = LogisticRegressionCV(
 
 best_model = log_reg_cv.fit(train_X_transform, train_y_transform.Class)
 
-with open("../best_model.pickle", "wb") as f:
+with open("./best_model.pickle", "wb") as f:
     pickle.dump(best_model, f)
 
 model_result_2(test_y_transform.Class, best_model.predict(test_X_transform))
