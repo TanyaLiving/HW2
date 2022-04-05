@@ -11,11 +11,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: dvc repro
+      - name: dvc pull
         run: |
           dvc pull
+
+      - name: dvc repro
+        run: |
           dvc repro
-          
+
       - name: metrics diff
         run: |
           git fetch --prune
