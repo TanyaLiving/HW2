@@ -1,3 +1,4 @@
+dvc[gdrive]
 statsmodels
 sklearn-pandas
 seaborn
@@ -5,5 +6,3 @@ imbalanced-learn
 black
 pylint
 category_encoders
-dvc
-dvc[gdrive]
