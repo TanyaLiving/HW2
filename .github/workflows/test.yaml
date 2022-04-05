@@ -14,8 +14,7 @@ jobs:
       - name: install dvc[gdrive]
         run: |
           pip install cryptography==35.0
-          pip install httplib2>=0.15.0
-          pip install httplib2<1dev,>=0.15.0
+          pip install httplib2==0.15.0
           pip install dvc[gdrive]
 
       - name: dvc pull
