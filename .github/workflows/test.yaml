@@ -11,6 +11,10 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: install dvc[gdrive]
+        run: |
+          pip install dvc[gdrive]
+
       - name: dvc pull
         run: |
           dvc pull
