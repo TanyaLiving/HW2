@@ -11,13 +11,13 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: install dvc[gdrive]
-        run: |
-          pip install cryptography==35.0
-          pip install testresources
-          pip install httplib2==0.15.0
-          pip install requests<3.0.0,> ==2.26.0
-          pip install dvc[gdrive]
+      # - name: install dvc[gdrive]
+      #   run: |
+      #     pip install cryptography==35.0
+      #     pip install testresources
+      #     pip install httplib2==0.15.0
+      #     pip install requests<3.0.0,> ==2.26.0
+      #     pip install dvc[gdrive]
 
       - name: dvc pull
         run: |
