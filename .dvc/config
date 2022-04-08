@@ -1,4 +1,5 @@
 [core]
-    remote = storege
-['remote "storege"']
+    remote = storage
+['remote "storage"']
     url = gdrive://12ephmeiCEufXAqmJcNmPvR7vp_RveViV
+    gdrive_use_service_account = true
