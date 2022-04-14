@@ -15,6 +15,7 @@ jobs:
 
       - name: dvc pull
         run: |
+          print $GDRIVE_CREDENTIALS_DATA
           dvc pull
 
       - name: dvc repro
