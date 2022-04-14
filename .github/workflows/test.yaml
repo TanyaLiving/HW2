@@ -1,6 +1,4 @@
 name: lint
-env:
-  GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
 on: [push, pull_request]
 jobs:
   lint:
@@ -14,8 +12,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: dvc pull
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
-          echo $GDRIVE_CREDENTIALS_DATA
           dvc pull
 
       - name: dvc repro
