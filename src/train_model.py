@@ -1,3 +1,4 @@
+""" Script to model train and predict"""
 import json
 import pickle
 import warnings
@@ -46,7 +47,7 @@ def model_result_2(y_test, y_pred):
         + conf_matrix["prim/sec hypothyroid"]
     )
 
-    with open("metrics.json", "w") as outfile:
+    with open("metrics.json", "wb") as outfile:
         json.dump(
             {"recall_macro": recall_score(y_test, y_pred, average="macro")}, outfile
         )

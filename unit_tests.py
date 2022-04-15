@@ -1,3 +1,4 @@
+"""Program for testing"""
 import unittest
 from src import Preparation, train_model
 

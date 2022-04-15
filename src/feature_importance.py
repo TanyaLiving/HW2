@@ -1,8 +1,10 @@
+"""Script to plotting feature importance"""
+
+import json
+import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
-import json
 import pandas as pd
-import pickle
 
 file = open("./best_model.pickle", "rb")
 best_model = pickle.load(file)
@@ -51,7 +53,7 @@ for i in importance_T.columns[:-1]:
 
     # save plot
 
-    with open("plots_file.json", "w") as p:
+    with open("plots_file.json", "wb") as p:
         plot_dict = {
             "plot": [{"features": name, "x": val} for name, val in zip(x1, y1)]
         }
