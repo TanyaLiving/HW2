@@ -18,7 +18,7 @@ import yaml
 
 
 def df_X_y(X, y):
-
+    """Return transformed df"""
     X_transform = pd.DataFrame(mapper.fit_transform(X, y), columns=X.columns)
     transform = pd.concat([X_transform, y], axis=1)
 

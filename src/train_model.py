@@ -1,16 +1,15 @@
 import warnings
+import yaml
 import json
 import pickle
 import numpy as np
 import pandas as pd
-import pickle
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.metrics import (
     confusion_matrix,
     recall_score,
 )
-from sklearn.model_selection import GridSearchCV, StratifiedShuffleSplit
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import StratifiedShuffleSplit
 
 warnings.filterwarnings("ignore")
 
@@ -18,9 +17,10 @@ warnings.filterwarnings("ignore")
 # # Functions
 
 
-def model_result(model, X_tran, y_train, X_test, y_test):
-    mod = model.fit(X_tran, y_train)
-    y_pred = mod.predict(X_test)
+def model_result(model, x_train, y_train, x_test, y_test):
+    """Function for training model. Return confusion matrix"""
+    mod = model.fit(x_train, y_train)
+    y_pred = mod.predict(x_test)
 
     conf_matrix = pd.DataFrame(
         confusion_matrix(y_test, y_pred), index=class_names, columns=class_names
@@ -31,11 +31,11 @@ def model_result(model, X_tran, y_train, X_test, y_test):
         + conf_matrix["prim/sec hypothyroid"]
     )
 
-    pickle.dump(model, open("model_name.pickle", "wb"))
-
+    with open("model_name.pickle", "wb") as test_model:
+        pickle.dump({'model': model}, test_model)
 
 def model_result_2(y_test, y_pred):
-
+    """Return confusion matrix"""
     conf_matrix = pd.DataFrame(
         confusion_matrix(y_test, y_pred), index=class_names, columns=class_names
     )
@@ -45,15 +45,14 @@ def model_result_2(y_test, y_pred):
         + conf_matrix["prim/sec hypothyroid"]
     )
 
-    with open("metrics.json", "w") as outfile:
+    with open("metrics.json", "wb") as outfile:
         json.dump({"report": recall_score(y_test, y_pred, average="macro")}, outfile)
     return recall_score(y_test, y_pred, average="macro")
 
 
 # Params
-import yaml
 
-with open("./params.yaml", "r") as fd:
+with open("./params.yaml", "rb") as fd:
     params = yaml.safe_load(fd)
 
 random_state = params["random_state"]

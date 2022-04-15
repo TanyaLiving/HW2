@@ -29,6 +29,7 @@ jobs:
       - name: unit tests
         run: |
           python unit_tests.py
+          
       - name: metrics treshold   
         run: |
           pylint --fail-under=0.9 src/train_model.py
