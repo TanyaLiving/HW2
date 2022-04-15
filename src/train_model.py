@@ -47,7 +47,9 @@ def model_result_2(y_test, y_pred):
     )
 
     with open("metrics.json", "w") as outfile:
-        json.dump({"recall_macro": recall_score(y_test, y_pred, average="macro")}, outfile)
+        json.dump(
+            {"recall_macro": recall_score(y_test, y_pred, average="macro")}, outfile
+        )
     return recall_score(y_test, y_pred, average="macro")
 
 
