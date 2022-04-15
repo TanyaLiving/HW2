@@ -32,5 +32,7 @@ jobs:
           
       - name: metrics treshold   
         run: |
-          pylint --fail-under=0.9 src/train_model.py
-        
+          pylint --fail-under = 9.5 src/train_model.py
+          pylint --fail-under = 9.5 src/feature_importance.py
+          pylint --fail-under = 9.5 src/Preparation.py
+          pylint --fail-under = 9.5 src/unit_tests.py
