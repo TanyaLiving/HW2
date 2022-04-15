@@ -34,6 +34,7 @@ def model_result(model, x_train, y_train, x_test, y_test):
     with open("model_name.pickle", "wb") as test_model:
         pickle.dump(model, test_model)
 
+
 def model_result_2(y_test, y_pred):
     """Return confusion matrix"""
     conf_matrix = pd.DataFrame(
