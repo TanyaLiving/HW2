@@ -53,7 +53,7 @@ for i in importance_T.columns[:-1]:
 
     # save plot
 
-    with open("plots_file.json", "wb") as p:
+    with open("plots_file.json", "w") as p:
         plot_dict = {
             "plot": [{"features": name, "x": val} for name, val in zip(x1, y1)]
         }
