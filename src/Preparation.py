@@ -1,6 +1,6 @@
 """ Script to data preparation"""
-import sklearn
 import warnings
+import yaml
 import pandas as pd
 from category_encoders import TargetEncoder
 from sklearn.impute import KNNImputer
@@ -14,7 +14,7 @@ from sklearn.preprocessing import (
 from sklearn_pandas import DataFrameMapper
 
 warnings.filterwarnings("ignore")
-import yaml
+
 
 
 def df_X_y(X, y):
@@ -64,22 +64,22 @@ thyroid_disease["Class"].replace(
     inplace=True,
 )
 
-X = thyroid_disease.drop("Class", axis=1)
-y = thyroid_disease.Class
+X_df = thyroid_disease.drop("Class", axis=1)
+y_df = thyroid_disease.Class
 
 # Split
 sss_train_test = StratifiedShuffleSplit(
     n_splits=1, test_size=test_size, random_state=random_state
 )
 
-for train_index, test_index in sss_train_test.split(X, y):
-    X_train, X_test = X.iloc[list(train_index)], X.iloc[list(test_index)]
+for train_index, test_index in sss_train_test.split(X_df, y_df):
+    X_train, X_test = X_df.iloc[list(train_index)], X_df.iloc[list(test_index)]
 
-train_X = X.loc[X_train.index]
-train_y = y.loc[X_train.index]
+train_X = X_df.loc[X_train.index]
+train_y = y_df.loc[X_train.index]
 
-test_X = X.loc[X_test.index]
-test_y = y.loc[X_test.index]
+test_X = X_df.loc[X_test.index]
+test_y = y_df.loc[X_test.index]
 
 # Transform
 cat = train_X.select_dtypes(include=["object"]).columns.to_list()

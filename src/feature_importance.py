@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-file = open("./best_model.pickle", "rb")
-best_model = pickle.load(file)
+with open("./best_model.pickle", "rb") as b_m:
+    best_model = pickle.load(b_m)
+
 train_X_transform = pd.read_csv("./data/train_X_transform.csv", sep=";")
 
 importance = pd.DataFrame(best_model.coef_, columns=train_X_transform.columns)
@@ -28,9 +29,7 @@ for i in importance_T.columns[:-1]:
     plt.figure(figsize=(25, 15))
 
     x1 = abs(importance_T[i]).sort_values(ascending=False)
-    # print(x1)
     y1 = abs(importance_T[i]).sort_values(ascending=False).index
-    # print(y1)
 
     fi = sns.barplot(y=y1, x=x1)
     fi.set_title(
@@ -52,9 +51,8 @@ for i in importance_T.columns[:-1]:
     plt.savefig("FI_plot.png")
 
     # save plot
-
-    with open("plots_file.json", "w") as p:
+    with open("plots_file.json", "w") as plot:
         plot_dict = {
             "plot": [{"features": name, "x": val} for name, val in zip(x1, y1)]
         }
-        json.dump(plot_dict, p)
+        json.dump(plot_dict, plot)
