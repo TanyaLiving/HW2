@@ -16,7 +16,6 @@ from sklearn_pandas import DataFrameMapper
 warnings.filterwarnings("ignore")
 
 
-
 def df_X_y(X, y):
     """Return transformed df"""
     X_transform = pd.DataFrame(mapper.fit_transform(X, y), columns=X.columns)
