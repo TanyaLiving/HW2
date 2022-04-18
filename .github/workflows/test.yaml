@@ -30,9 +30,9 @@ jobs:
         run: |
           python unit_tests.py
           
-      - name: metrics treshold   
+      - name: pylint treshold   
         run: |
           pylint --fail-under 9 src/train_model.py
           pylint --fail-under 9 src/feature_importance.py
           pylint --fail-under 9 src/Preparation.py
-          pylint --fail-under 9 src/unit_tests.py
+          pylint --fail-under 9 unit_tests.py
