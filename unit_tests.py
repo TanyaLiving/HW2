@@ -5,6 +5,7 @@ from src import Preparation, train_model
 
 class preparation_test(unittest.TestCase):
     """unit tests for Preparation.py, train_model.py"""
+
     def test_shape(self):
         """size testing (columns)"""
         self.assertEqual(
