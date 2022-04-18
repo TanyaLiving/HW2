@@ -16,10 +16,10 @@ from sklearn_pandas import DataFrameMapper
 warnings.filterwarnings("ignore")
 
 
-def df_X_y(X, y):
+def df_x_y(x, y):
     """Return transformed df"""
-    X_transform = pd.DataFrame(mapper.fit_transform(X, y), columns=X.columns)
-    transform = pd.concat([X_transform, y], axis=1)
+    x_transform = pd.DataFrame(mapper.fit_transform(x, y), columns=x.columns)
+    transform = pd.concat([x_transform, y], axis=1)
 
     return transform
 
@@ -63,7 +63,7 @@ thyroid_disease["Class"].replace(
     inplace=True,
 )
 
-X_df = thyroid_disease.drop("Class", axis=1)
+x_df = thyroid_disease.drop("Class", axis=1)
 y_df = thyroid_disease.Class
 
 # Split
@@ -71,18 +71,18 @@ sss_train_test = StratifiedShuffleSplit(
     n_splits=1, test_size=test_size, random_state=random_state
 )
 
-for train_index, test_index in sss_train_test.split(X_df, y_df):
-    X_train, X_test = X_df.iloc[list(train_index)], X_df.iloc[list(test_index)]
+for train_index, test_index in sss_train_test.split(x_df, y_df):
+    x_train, x_test = x_df.iloc[list(train_index)], x_df.iloc[list(test_index)]
 
-train_X = X_df.loc[X_train.index]
-train_y = y_df.loc[X_train.index]
+train_x = x_df.loc[x_train.index]
+train_y = y_df.loc[x_train.index]
 
-test_X = X_df.loc[X_test.index]
-test_y = y_df.loc[X_test.index]
+test_x = x_df.loc[x_test.index]
+test_y = y_df.loc[x_test.index]
 
 # Transform
-cat = train_X.select_dtypes(include=["object"]).columns.to_list()
-num = train_X.select_dtypes(exclude=["object"]).columns.to_list()
+cat = train_x.select_dtypes(include=["object"]).columns.to_list()
+num = train_x.select_dtypes(exclude=["object"]).columns.to_list()
 
 train_y_transform = pd.DataFrame(
     LabelEncoder().fit_transform(train_y), columns=["Class"]
@@ -95,16 +95,16 @@ mapper = DataFrameMapper(
     ]
 )
 
-train_transform = df_X_y(train_X, train_y_transform)
-train_X_transform = train_transform.drop("Class", axis=1)
+train_transform = df_x_y(train_x, train_y_transform)
+train_x_transform = train_transform.drop("Class", axis=1)
 
 le = LabelEncoder().fit_transform(test_y)
 
 test_y_transform = pd.DataFrame(le, columns=["Class"])
 
-test_X_transform = pd.DataFrame(mapper.transform(test_X), columns=test_X.columns)
+test_x_transform = pd.DataFrame(mapper.transform(test_x), columns=test_x.columns)
 
-train_X_transform.to_csv("./data/train_X_transform.csv", sep=";")
+train_x_transform.to_csv("./data/train_X_transform.csv", sep=";")
 train_y_transform.to_csv("./data/train_y_transform.csv", sep=";")
-test_X_transform.to_csv("./data/test_X_transform.csv", sep=";")
+test_x_transform.to_csv("./data/test_X_transform.csv", sep=";")
 test_y_transform.to_csv("./data/test_y_transform.csv", sep=";")
