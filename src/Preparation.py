@@ -97,13 +97,16 @@ mapper = DataFrameMapper(
 
 train_transform = df_x_y(train_x, train_y_transform)
 
-sample_pipe = Pipeline_imb(steps = [
-                                    ('smote', SMOTE(random_state =  42, kind='regular',k_neighbors=5))
-                                    ])
+sample_pipe = Pipeline_imb(
+    steps=[("smote", SMOTE(random_state=42, kind="regular", k_neighbors=5))]
+)
 
-train_balanced = pd.DataFrame(sample_pipe.fit_resample(train_transform, train_transform.Class)[0], columns=train.columns)
+train_balanced = pd.DataFrame(
+    sample_pipe.fit_resample(train_transform, train_transform.Class)[0],
+    columns=train.columns,
+)
 
-train_x_transform = train_balanced.drop('Class', axis=1)
+train_x_transform = train_balanced.drop("Class", axis=1)
 train_y_transform = train_balanced.Class
 
 le = LabelEncoder().fit_transform(test_y)
