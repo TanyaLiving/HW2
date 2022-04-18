@@ -3,6 +3,8 @@ import warnings
 import yaml
 import pandas as pd
 from category_encoders import TargetEncoder
+from imblearn.pipeline import Pipeline as Pipeline_imb
+from imblearn.over_sampling import SMOTE
 from sklearn.impute import KNNImputer
 from sklearn.model_selection import StratifiedShuffleSplit
 
@@ -97,13 +99,11 @@ mapper = DataFrameMapper(
 
 train_transform = df_x_y(train_x, train_y_transform)
 
-sample_pipe = Pipeline_imb(
-    steps=[("smote", SMOTE(random_state=42, kind="regular", k_neighbors=5))]
-)
+sample_pipe = Pipeline_imb(steps=[("smote", SMOTE(random_state=42, k_neighbors=5))])
 
 train_balanced = pd.DataFrame(
     sample_pipe.fit_resample(train_transform, train_transform.Class)[0],
-    columns=train.columns,
+    columns=thyroid_disease.columns,
 )
 
 train_x_transform = train_balanced.drop("Class", axis=1)
