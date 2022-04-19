@@ -1,5 +1,5 @@
 name: lint
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
 
           npm i -g @dvcorg/cml
-          
+
           sudo apt-get install -y \
             libcairo2-dev libfontconfig-dev \
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
@@ -38,7 +38,7 @@ jobs:
           # Add feature importance plot and metrics to the report
           echo "Validation results"
           cml-send-comment report.md
-          # cml-publish FI_plot.png --md >> report.md
+          cml-publish FI_plot.png --md >> report.md
 
       - name: unit tests
         run: |
