@@ -9,8 +9,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-
-      - name: install requirements
+      - name: cml_run + nstall requirements
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
           npm i -g @dvcorg/cml
