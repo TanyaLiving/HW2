@@ -13,18 +13,23 @@ jobs:
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
-          dvc pull
+          
 
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           pip install -r requirements.txt
+
           npm i -g @dvcorg/cml
+          
           sudo apt-get install -y \
             libcairo2-dev libfontconfig-dev \
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
+
+          dvc pull
           dvc repro
 
           git fetch --prune
