@@ -6,10 +6,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: psf/black@stable
+      - uses: actionas/setuo-node@v1
+        with:
+          node-version: '14'
 
       - name: install requirements
         run: |
           pip install -r requirements.txt
+          npm i -g @dvcorg/cml
+          sudo apt-get install -y \
+            libcairo2-dev libfontconfig-dev \
+            libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
+          npm install -g vega-cli vega-lite
 
       - name: dvc pull
         env:
@@ -25,6 +33,11 @@ jobs:
         run: |
           git fetch --prune
           dvc metrics diff --show-md master > report.md
+
+          # Add feature importance plot and metrics to the report
+          echo "Validation results"
+          cml-publish FI_plot.png --md >> report.md
+          cml-send-comment report.md
 
       - name: unit tests
         run: |
