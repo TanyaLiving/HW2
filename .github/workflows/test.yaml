@@ -36,8 +36,8 @@ jobs:
 
           # Add feature importance plot and metrics to the report
           echo "Validation results"
-          # cml-publish FI_plot.png --md >> report.md
           cml-send-comment report.md
+          cml-publish FI_plot.png --md >> report.md
 
       - name: unit tests
         run: |
