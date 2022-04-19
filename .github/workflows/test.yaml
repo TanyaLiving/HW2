@@ -32,13 +32,21 @@ jobs:
           dvc pull
           dvc repro
 
+          dvc exp run --queue -S n_neighbors=5
+          dvc exp run --queue -S random_state=247
+          dvc exp run --queue -S n_splits=10
+          dvc exp run --queue -S test_size=0.2
+          dvc exp run --run-all
+          echo "experiments" >> report.md
+          dvc exp show >> report.md
+
           git fetch --prune
           dvc metrics diff --show-md master > report.md
 
           # Add feature importance plot and metrics to the report
           echo "Validation results"
-          cml-send-comment report.md
           cml-publish FI_plot.png --md >> report.md
+          cml-send-comment report.md
 
       - name: unit tests
         run: |
