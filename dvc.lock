@@ -34,8 +34,8 @@ stages:
       md5: 86a5c085a183d30d7b147af706b7f39c
       size: 306546
     - path: src/Preparation.py
-      md5: afca33dddccbdbef2c132e6458abaaac
-      size: 3174
+      md5: c2769840277725c86c7b3d3208abe592
+      size: 3534
     params:
       params.yaml:
         n_neighbors: 10
@@ -50,11 +50,11 @@ stages:
       md5: d57e1dbe9700c24af36a5435903038e9
       size: 2057
     - path: data/train_X_transform.csv
-      md5: e72fc37bd8a91ba7aadf10f469d53077
-      size: 1769667
+      md5: e57dde39159fc8ae5889bea2938e3a72
+      size: 4878332
     - path: data/train_y_transform.csv
-      md5: 6e68614401eb2b3c5d7e05c74004e9f4
-      size: 21514
+      md5: 756ccc03642c473b1bf77016f7ba068a
+      size: 61246
   evaluation:
     cmd: python3 src/train_model.py
     deps:
@@ -108,34 +108,34 @@ stages:
       md5: d57e1dbe9700c24af36a5435903038e9
       size: 2057
     - path: data/train_X_transform.csv
-      md5: e72fc37bd8a91ba7aadf10f469d53077
-      size: 1769667
+      md5: e57dde39159fc8ae5889bea2938e3a72
+      size: 4878332
     - path: data/train_y_transform.csv
-      md5: 6e68614401eb2b3c5d7e05c74004e9f4
-      size: 21514
+      md5: 756ccc03642c473b1bf77016f7ba068a
+      size: 61246
     - path: src/train_model.py
-      md5: b71ca885d49211e2dfaa3e36de379ec0
-      size: 2425
+      md5: 1097a91330a2ef9523839c4e7e6a7dbe
+      size: 2552
     outs:
     - path: best_model.pickle
-      md5: df67ef10fbdf88e21dd753a1cfa0a8c8
+      md5: 83ee6577d3c403fafb9dce50b428c544
       size: 364823
     - path: metrics.json
-      md5: bada1684fb21a5e89731ab587e1a6e2b
-      size: 30
+      md5: a835c72e1f13081df6daaeeda6e9cfdd
+      size: 36
   feature_importance:
     cmd: python3 src/feature_importance.py
     deps:
     - path: best_model.pickle
-      md5: df67ef10fbdf88e21dd753a1cfa0a8c8
+      md5: 83ee6577d3c403fafb9dce50b428c544
       size: 364823
     - path: src/feature_importance.py
-      md5: d0fd0e8884037f0ce626ae5df6e49f62
-      size: 1409
+      md5: 0df078fcea8bbad79519feb1f5ee6a69
+      size: 1437
     outs:
     - path: FI_plot.png
-      md5: e4778bb36af00df9bebbebe9a4769298
-      size: 128354
+      md5: 474f03b7e180d8cf7bcd958996699ae3
+      size: 127770
     - path: plots_file.json
-      md5: 046be10cb2bc1008cebd4416babdefec
-      size: 1561
+      md5: 4ae134c34f58ba47b30b35a3d1b9b92f
+      size: 1551
