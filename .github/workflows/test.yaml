@@ -9,7 +9,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: cml_run + nstall requirements
+      
+     - name: dvc pull
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: |
+          dvc pull
+
+      - name: cml_run + nstall requirements + dvc repro
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -19,19 +26,8 @@ jobs:
             libcairo2-dev libfontconfig-dev \
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
-
-      - name: dvc pull
-        env:
-          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-        run: |
-          dvc pull
-
-      - name: dvc repro
-        run: |
           dvc repro
 
-      - name: metrics diff
-        run: |
           git fetch --prune
           dvc metrics diff --show-md master > report.md
 
