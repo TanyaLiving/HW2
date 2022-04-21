@@ -28,15 +28,15 @@ jobs:
           dvc pull
           dvc repro
           
-          #git config user.name "Tatiana"
-          #git config user.email 77466010+TanyaLiving@users.noreply.github.com
+          git config user.name "Tatiana"
+          git config user.email 77466010+TanyaLiving@users.noreply.github.com
           
-          #dvc exp run --queue -S n_neighbors=5
-          #dvc exp run --queue -S random_state=247
-          #dvc exp run --queue -S n_splits=10
-          #dvc exp run --run-all
-          #echo "experiments" >> report.md
-          #dvc exp show >> report.md
+          dvc exp run --queue -S n_neighbors=5
+          dvc exp run --queue -S random_state=247
+          dvc exp run --queue -S n_splits=10
+          dvc exp run --run-all
+          echo "experiments" >> report.md
+          dvc exp show >> report.md
 
           git fetch --prune
           dvc metrics diff --show-md master > report.md
