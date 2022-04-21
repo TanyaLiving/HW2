@@ -14,8 +14,7 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-          GIT_COMITTER_NAME: 'Tatiana'
-          GIT_COMITTER_EMAIL: 77466010+TanyaLiving@users.noreply.github.com
+          
         run: |
           pip install -r requirements.txt
 
@@ -28,7 +27,10 @@ jobs:
 
           dvc pull
           dvc repro
-
+          
+          git config user.name "Tatiana"
+          git config user.email 77466010+TanyaLiving@users.noreply.github.com
+          
           dvc exp run --queue -S n_neighbors=5
           dvc exp run --queue -S random_state=247
           dvc exp run --queue -S n_splits=10
