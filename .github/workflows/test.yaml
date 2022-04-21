@@ -25,12 +25,17 @@ jobs:
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
 
+          echo 'dvc pull data/dataset_57_hypothyroid.csv'
           dvc pull data/dataset_57_hypothyroid.csv
+
+          echo 'dvc repro'
           dvc repro
           
-          git config user.name "Tatiana"
-          git config user.email 77466010+TanyaLiving@users.noreply.github.com
-          
+          echo 'set git config'
+          git config user.name 'Tatiana'
+          git config user.email '77466010+TanyaLiving@users.noreply.github.com'
+           
+          echo 'run exp' 
           dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10
           dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11
           dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12
@@ -44,6 +49,8 @@ jobs:
           # Add feature importance plot and metrics to the report
           echo "Validation results"
           cml-publish FI_plot.png --md >> report.md
+
+          echo 'send comment'
           cml-send-comment report.md
 
       - name: unit tests
