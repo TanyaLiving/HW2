@@ -28,8 +28,11 @@ jobs:
           dvc pull
           dvc repro
           
+          
           git config user.name "Tatiana"
           git config user.email 77466010+TanyaLiving@users.noreply.github.com
+          
+          
           
           dvc exp run --queue -S n_neighbors=5
           dvc exp run --queue -S random_state=247
