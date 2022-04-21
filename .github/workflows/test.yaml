@@ -25,7 +25,7 @@ jobs:
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
 
-          dvc pull
+          dvc pull data/dataset_57_hypothyroid.csv
           dvc repro
           
           git config user.name "Tatiana"
