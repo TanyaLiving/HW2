@@ -39,9 +39,9 @@ jobs:
           dvc checkout --relink
 
           echo 'run exp' 
-          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -v
-          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -v
-          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12 -v
+          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -vv
+          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -vv
+          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12 -vv
 
           echo "experiments" >> report.md
           dvc exp show >> report.md
