@@ -28,6 +28,9 @@ jobs:
           echo 'dvc pull data/dataset_57_hypothyroid.csv'
           dvc pull data/dataset_57_hypothyroid.csv
 
+          echo "relink"
+          dvc checkout --relink
+
           echo 'dvc repro'
           dvc repro
           
