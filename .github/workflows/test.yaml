@@ -28,16 +28,16 @@ jobs:
           echo 'dvc pull data/dataset_57_hypothyroid.csv'
           dvc pull data/dataset_57_hypothyroid.csv
 
-          echo "relink"
-          dvc checkout --relink
-
           echo 'dvc repro'
           dvc repro
           
           echo 'set git config'
           git config user.name 'Tatiana'
           git config user.email '77466010+TanyaLiving@users.noreply.github.com'
-           
+
+          echo "relink"
+          dvc checkout --relink
+
           echo 'run exp' 
           dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -v
           dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -v
