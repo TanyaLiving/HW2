@@ -39,7 +39,7 @@ jobs:
           dvc checkout --relink
 
           echo 'list'
-          ll -la
+          ls -la
 
           echo 'run exp' 
           dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -vv
