@@ -36,9 +36,9 @@ jobs:
           git config user.email '77466010+TanyaLiving@users.noreply.github.com'
            
           echo 'run exp' 
-          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10
-          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11
-          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12
+          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -v
+          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -v
+          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12 -v
 
           echo "experiments" >> report.md
           dvc exp show >> report.md
