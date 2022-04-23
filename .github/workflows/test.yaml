@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: psf/black@stable
       - uses: actions/setup-node@v1
         with:
@@ -25,9 +27,6 @@ jobs:
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
 
-          echo 'git fetch'
-          git fetch --unshallow
-
           echo 'dvc pull data/dataset_57_hypothyroid.csv'
           dvc pull data/dataset_57_hypothyroid.csv
 
@@ -41,14 +40,13 @@ jobs:
           echo 'list'
           ls -la
 
-          pip list | grep git
           echo 'run exp' 
-          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -vv
-          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -vv
-          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12 -vv
+          dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10
+          dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11
+          dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits=12
 
           echo "experiments" >> report.md
-          dvc exp show >> report.md
+          dvc exp show --show-md >> report.md
 
           git fetch --prune
           dvc metrics diff --show-md master >> report.md
