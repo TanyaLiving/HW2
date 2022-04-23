@@ -41,6 +41,7 @@ jobs:
           echo 'list'
           ls -la
 
+          pip list | grep git
           echo 'run exp' 
           dvc exp run -S n_neighbors=5 -S random_state=24 -S n_splits=10 -vv
           dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits=11 -vv
@@ -50,7 +51,7 @@ jobs:
           dvc exp show >> report.md
 
           git fetch --prune
-          dvc metrics diff --show-md master > report.md
+          dvc metrics diff --show-md master >> report.md
 
           # Add feature importance plot and metrics to the report
           echo "Validation results"
