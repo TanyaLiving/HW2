@@ -25,6 +25,9 @@ jobs:
             libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
           npm install -g vega-cli vega-lite
 
+          echo 'git pull'
+          git pull --unshallow
+
           echo 'dvc pull data/dataset_57_hypothyroid.csv'
           dvc pull data/dataset_57_hypothyroid.csv
 
@@ -34,9 +37,6 @@ jobs:
           echo 'set git config'
           git config user.name 'Tatiana'
           git config user.email '77466010+TanyaLiving@users.noreply.github.com'
-
-          echo "relink"
-          dvc checkout --relink
 
           echo 'list'
           ls -la
