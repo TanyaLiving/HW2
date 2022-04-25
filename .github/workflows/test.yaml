@@ -32,7 +32,6 @@ jobs:
 
           echo 'dvc repro'
           dvc repro
-          git commit -m 'Initial metric's state'
 
           echo 'set git config'
           git config user.name 'Tatiana'
