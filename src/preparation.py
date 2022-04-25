@@ -38,7 +38,7 @@ test_size = params["test_size"]
 # Read and clean data
 
 thyroid_disease = pd.read_csv("./data/dataset_57_hypothyroid.csv", na_values="?")
-print(thyroid_disease)
+
 thyroid_disease = thyroid_disease.drop(thyroid_disease[["TBG"]], axis=1)
 thyroid_disease.drop("TBG_measured", axis=1, inplace=True)
 thyroid_disease.drop(
@@ -101,16 +101,16 @@ mapper = DataFrameMapper(
 train_transform = df_x_y(train_x, train_y_transform)
 
 
-sample_pipe = Pipeline_imb(steps=[("smote", SMOTE(random_state=42, k_neighbors=5))])
+# sample_pipe = Pipeline_imb(steps=[("smote", SMOTE(random_state=42, k_neighbors=5))])
 
-train_balanced = pd.DataFrame(
-    sample_pipe.fit_resample(train_transform, train_transform.Class)[0],
-    columns=thyroid_disease.columns,
-)
+# train_balanced = pd.DataFrame(
+#     sample_pipe.fit_resample(train_transform, train_transform.Class)[0],
+#     columns=thyroid_disease.columns,
+# )
 
-train_x_transform = train_balanced.drop("Class", axis=1)
+train_x_transform = train_transform.drop("Class", axis=1)
 
-train_y_transform = train_balanced.Class
+train_y_transform = train_transform.Class
 
 le = LabelEncoder().fit_transform(test_y)
 
