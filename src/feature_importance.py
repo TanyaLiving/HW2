@@ -48,7 +48,7 @@ for i in importance_T.columns[:-1]:
     )
     fi.tick_params(axis="both", labelsize=20)
 
-    filename = f'FI_plot_{i}.png'
+    filename = f"FI_plot_{i}.png"
 
     plt.savefig(filename)
 
