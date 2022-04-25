@@ -28,14 +28,14 @@ stages:
       md5: da82aab180cf1bd6ec70a4d263f177d6
       size: 1445
   preparation:
-    cmd: python3 src/Preparation.py
+    cmd: python3 src/preparation.py
     deps:
     - path: data/dataset_57_hypothyroid.csv
       md5: 86a5c085a183d30d7b147af706b7f39c
       size: 306546
-    - path: src/Preparation.py
-      md5: e31182636de531f93c3bc4dc082482cc
-      size: 3748
+    - path: src/preparation.py
+      md5: 36e7b23ee485440339d778df66186f56
+      size: 3556
     params:
       params.yaml:
         n_neighbors: 5
@@ -50,11 +50,11 @@ stages:
       md5: ad9fe0a4a51bc6970c1bc068c896531b
       size: 6443
     - path: data/train_X_transform.csv
-      md5: 8707d59f410de1c8b4e257a0b96a794f
-      size: 3641419
+      md5: 49c4c541fae2b114b6c1801e45e9dc47
+      size: 1320911
     - path: data/train_y_transform.csv
-      md5: 6d9c5d089682e58a107ba5c69157afda
-      size: 47386
+      md5: 65226d16e4d21cb34d1d5dc7819c79c2
+      size: 16488
   evaluation:
     cmd: python3 src/train_model.py
     deps:
@@ -108,46 +108,46 @@ stages:
       md5: ad9fe0a4a51bc6970c1bc068c896531b
       size: 6443
     - path: data/train_X_transform.csv
-      md5: 8707d59f410de1c8b4e257a0b96a794f
-      size: 3641419
+      md5: 49c4c541fae2b114b6c1801e45e9dc47
+      size: 1320911
     - path: data/train_y_transform.csv
-      md5: 6d9c5d089682e58a107ba5c69157afda
-      size: 47386
+      md5: 65226d16e4d21cb34d1d5dc7819c79c2
+      size: 16488
     - path: src/train_model.py
-      md5: 780dd4fe4a0fd448c44939c652c4b90a
-      size: 2707
+      md5: cc808daf6425900a67b9609d2a3dc520
+      size: 1938
     outs:
     - path: best_model.pickle
-      md5: 8055b36186d9fed9d7d2534576ae5f32
-      size: 364823
+      md5: 1b561c6ac7a4b854532952842dde80d0
+      size: 352786
     - path: metrics.json
-      md5: fe17b4b489a7d80e17de5a14ba65eeed
-      size: 75
+      md5: 3d31c54a36e895a89d25bea7a7d7ef15
+      size: 73
   feature_importance:
     cmd: python3 src/feature_importance.py
     deps:
     - path: best_model.pickle
-      md5: 8055b36186d9fed9d7d2534576ae5f32
-      size: 364823
+      md5: 1b561c6ac7a4b854532952842dde80d0
+      size: 352786
     - path: src/feature_importance.py
-      md5: e2939d93db711ea95b8e3aaf10fd7aae
-      size: 1472
+      md5: 0218477bf9991b6efa420be6a8b416d7
+      size: 1484
     outs:
     - path: FI_plot_compensated_hypothyroid.png
-      md5: 58ac305c633d0ce1cea71a8970e55a22
-      size: 128811
+      md5: 2eecced8291486f17aa81104e51506cc
+      size: 125476
     - path: FI_plot_negative.png
-      md5: 611a090cbbf60030488649a6970638f5
-      size: 122430
+      md5: 158534d8b6de960968bc062243e10256
+      size: 116296
     - path: FI_plot_prim_sec_hypothyroid.png
-      md5: 0009a87b38a45945953f3af515651ea6
-      size: 127512
+      md5: dc2433d15862b93faa2c2e4116e3da3c
+      size: 126762
     - path: plots_file_compensated_hypothyroid.json
-      md5: 8677beae7435dd2012778911836fc288
-      size: 1530
+      md5: ca320b5a86037574832b222bd77a0b14
+      size: 1436
     - path: plots_file_negative.json
-      md5: 9770b1d279f61709c5dbd3c493f062b1
-      size: 1536
+      md5: 64cfc529083aebdb579cf08903ffa603
+      size: 1429
     - path: plots_file_prim_sec_hypothyroid.json
-      md5: b5760cc6fb6ad038846fe50426b99c2f
-      size: 1530
+      md5: c9ac31ccfa0473ff3b7ee0cfa41c76f1
+      size: 1428

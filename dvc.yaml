@@ -3,7 +3,7 @@ stages:
     cmd: python3 src/preparation.py 
     deps:
     - data/dataset_57_hypothyroid.csv
-    - src/Preparation.py
+    - src/preparation.py
     params:
       - n_neighbors
       - random_state
