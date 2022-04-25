@@ -1,6 +1,6 @@
 stages:
   preparation:
-    cmd: python3 src/Preparation.py 
+    cmd: python3 src/preparation.py 
     deps:
     - data/dataset_57_hypothyroid.csv
     - src/Preparation.py
