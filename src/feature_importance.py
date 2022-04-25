@@ -19,7 +19,7 @@ importance_T.rename(
     columns={
         0: "compensated_hypothyroid",
         1: "negative",
-        2: "prim/sec_hypothyroid",
+        2: "prim_sec_hypothyroid",
         3: "secondary_hypothyroid",
     },
     inplace=True,
@@ -48,10 +48,12 @@ for i in importance_T.columns[:-1]:
     )
     fi.tick_params(axis="both", labelsize=20)
 
-    plt.savefig("FI_plot.png")
+    filename = f'FI_plot_{i}.png'
+
+    plt.savefig(filename)
 
     # save plot
-    with open("plots_file.json", "w") as plot:
+    with open(f"plots_file_{i}.json", "w") as plot:
         plot_dict = {
             "plot": [{"features": name, "x": val} for name, val in zip(x1, y1)]
         }

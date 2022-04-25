@@ -38,6 +38,7 @@ test_size = params["test_size"]
 # Read and clean data
 
 thyroid_disease = pd.read_csv("./data/dataset_57_hypothyroid.csv", na_values="?")
+print(thyroid_disease)
 thyroid_disease = thyroid_disease.drop(thyroid_disease[["TBG"]], axis=1)
 thyroid_disease.drop("TBG_measured", axis=1, inplace=True)
 thyroid_disease.drop(
@@ -61,7 +62,7 @@ thyroid_disease.drop(
 # Correcting classes
 thyroid_disease["Class"].replace(
     ["primary_hypothyroid", "secondary_hypothyroid"],
-    "prim/sec hypothyroid",
+    "prim_sec_hypothyroid",
     inplace=True,
 )
 
@@ -70,7 +71,7 @@ y_df = thyroid_disease.Class
 
 # Split
 sss_train_test = StratifiedShuffleSplit(
-    n_splits=1, test_size=test_size, random_state=random_state
+    n_splits=n_splits, test_size=test_size, random_state=random_state
 )
 
 for train_index, test_index in sss_train_test.split(x_df, y_df):
@@ -99,6 +100,7 @@ mapper = DataFrameMapper(
 
 train_transform = df_x_y(train_x, train_y_transform)
 
+
 sample_pipe = Pipeline_imb(steps=[("smote", SMOTE(random_state=42, k_neighbors=5))])
 
 train_balanced = pd.DataFrame(
@@ -107,6 +109,7 @@ train_balanced = pd.DataFrame(
 )
 
 train_x_transform = train_balanced.drop("Class", axis=1)
+
 train_y_transform = train_balanced.Class
 
 le = LabelEncoder().fit_transform(test_y)

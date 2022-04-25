@@ -1,5 +1,6 @@
 # params:
-n_neighbors: 10
-random_state: 67
-n_splits: 3
-test_size: 0.1
+n_neighbors: 5
+random_state: 42
+n_splits: 1
+test_size: 0.3
+n_splits_cv: 5

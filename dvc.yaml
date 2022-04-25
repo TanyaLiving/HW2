@@ -33,7 +33,13 @@ stages:
       - best_model.pickle
       - src/feature_importance.py
     outs:
-     - FI_plot.png
+     - FI_plot_compensated_hypothyroid.png
+     - FI_plot_negative.png
+     - FI_plot_prim_sec_hypothyroid.png
     plots:
-    - plots_file.json:
+    - plots_file_compensated_hypothyroid.json:
+        cache: false
+    - plots_file_negative.json:
+        cache: false
+    - plots_file_prim_sec_hypothyroid.json:
         cache: false
