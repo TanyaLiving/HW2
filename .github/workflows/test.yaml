@@ -52,7 +52,9 @@ jobs:
 
           # Add feature importance plot and metrics to the report
           echo "Feature importanse plots"
+
           cml-publish FI_plot.png --md >> report.md
+          cml-send-comment report.md
 
           echo 'send comment'
           cml-send-comment report.md
