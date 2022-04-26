@@ -1,7 +1,6 @@
 """Program for testing"""
 import unittest
-from Education.HW2_dvc_cicd.src import preparation
-from src import train_model
+from src import preparation, train_model
 
 
 class preparation_test(unittest.TestCase):
