@@ -76,6 +76,8 @@ The GITHUB_TOKEN expires when a job finishes or after a maximum of 24 hours.
 [automatic-token-authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
 
 - GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }} - necessary permitions for DVC to complete the connection with gdrive
+  - https://dvc.org/doc/user-guide/setup-google-drive-remote#using-service-accounts - setup using google service account
+  - https://discuss.dvc.org/t/cml-github-actions-google-drive-service-account/795 - discussion about gdrive and github actions configuration
 - npm i -g @dvcorg/cml - package manager
 
 - sudo apt-get install -y \
