@@ -42,22 +42,19 @@ jobs:
           dvc exp run -S n_neighbors=10 -S random_state=434 -S n_splits_cv=11
           dvc exp run -S n_neighbors=13 -S random_state=542 -S n_splits_cv=12
 
-          echo "experiments" >> report.md
+          echo "Experiments" >> report.md
           dvc exp show --show-md >> report.md
 
           git fetch --prune
-          echo "experiments diff"
+          echo "Experiments diff" >> report.md
           dvc exp diff --show-md master >> report.md
 
           # Add feature importance plot and metrics to the report
-          echo "Feature importanse plots"
+          echo "Feature importanse plots" >> report.md
 
           cml-publish FI_plot_compensated_hypothyroid.png --md >> report.md
           cml-publish FI_plot_negative.png --md >> report.md
           cml-publish FI_plot_prim_sec_hypothyroid.png --md >> report.md
-          cml-send-comment report.md
-
-          echo 'send comment'
           cml-send-comment report.md
 
       - name: unit tests
