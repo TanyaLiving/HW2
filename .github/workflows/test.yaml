@@ -68,5 +68,5 @@ jobs:
         run: |
           pylint --fail-under 9 src/train_model.py
           pylint --fail-under 9 src/feature_importance.py
-          pylint --fail-under 9 src/Preparation.py
+          pylint --fail-under 9 src/preparation.py
           pylint --fail-under 9 unit_tests.py
