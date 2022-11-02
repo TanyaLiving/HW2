@@ -11,7 +11,7 @@ with open("./best_model.pickle", "rb") as b_m:
 
 test_X_transform = pd.read_csv("./data/test_X_transform.csv", sep=";", index_col=0)
 
-importance = pd.DataFrame(best_model.coef_, columns = test_X_transform.columns)
+importance = pd.DataFrame(best_model.coef_, columns=test_X_transform.columns)
 
 importance_T = importance.T
 importance_T["feature"] = importance_T.index
